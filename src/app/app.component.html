@@ -1,8 +1,16 @@
 <div>
-  <button routerLink="login">Login</button>
-  <button routerLink="registro">Registro</button>
-  <button routerLink="quiensoy">Quien soy</button>
-  <button routerLink="bienvenida">Bienvenida</button>
-</div>
-<router-outlet />
+  <!-- Mostrar botones de Login y Registro solo si no está logueado -->
+  <button *ngIf="!usuarioLogueado" routerLink="login">Login</button>
+  <button *ngIf="!usuarioLogueado" routerLink="registro">Registro</button>
 
+  
+  <!-- Mostrar otros botones, como "Quien soy", que siempre estarán visibles -->
+  <button routerLink="bienvenida">Bienvenida</button>
+  <button routerLink="quiensoy">Quien soy</button>
+
+  <!-- Mostrar el botón de "Cerrar sesión" solo si está logueado -->
+  <!-- <button *ngIf="usuarioLogueado" (click)="logout()">Cerrar sesión</button> -->
+</div>
+
+<!-- El contenido de las rutas se renderiza aquí -->
+<router-outlet />

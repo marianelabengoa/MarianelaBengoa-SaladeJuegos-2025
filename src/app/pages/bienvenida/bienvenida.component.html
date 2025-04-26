@@ -1,1 +1,23 @@
-<p>bienvenida works!</p>
+<div class="bienvenida-container">
+    <h1>Bienvenido a la Sala de Juegos 🎮</h1>
+  
+    <!-- Mostrar según si está logueado o no -->
+    <div *ngIf="usuario; else noLogueado">
+      <p>Hola, {{ usuario.email }} 👋</p>
+      <button (click)="logout()">Cerrar sesión</button>
+    </div>
+  
+    <ng-template #noLogueado>
+      <button (click)="navegarA('/login')">Iniciar Sesión</button>
+      <button (click)="navegarA('/registro')">Registrarse</button>
+    </ng-template>
+  
+    <hr>
+  
+    <!-- Juegos y Listados -->
+    <h2>Juegos y Listados:</h2>
+    <button (click)="navegarA('/juego1')">Juego 1</button>
+    <button (click)="navegarA('/juego2')">Juego 2</button>
+    <button (click)="navegarA('/listado')">Listado</button>
+  </div>
+  

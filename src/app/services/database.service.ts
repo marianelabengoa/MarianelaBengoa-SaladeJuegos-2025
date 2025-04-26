@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Router } from '@angular/router'; // Importalo
 
 const supabaseUrl = 'https://wznsybxninhseorgkdcc.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bnN5YnhuaW5oc2VvcmdrZGNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyMzQ3MzAsImV4cCI6MjA2MDgxMDczMH0.F_AE4XDTSj0_PCe6Q4wC2LSFPurAc0alW3L00T0XRLQ'; // reemplazar
@@ -11,7 +12,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 export class DatabaseService {
   private supabase: SupabaseClient;
 
-  constructor() {
+  constructor(private router: Router) { // Inyectalo
     this.supabase = createClient(supabaseUrl, supabaseKey);
   }
 
@@ -23,16 +24,20 @@ export class DatabaseService {
     const { data, error } = await this.supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          nombre,
+          apellido,
+          edad,
+        },
+      },
     });
-
-    if (error) return { error };
-
-    // Insertar datos en la tabla usuarios (sin contraseña)
-    const insert = await this.supabase
-      .from('usuarios')
-      .insert([{ email, nombre, apellido, edad }]);
-
-    return insert.error ? { error: insert.error } : { data: insert.data };
+  
+    if (error) {
+      console.error('Error en registrar del servicio:', error.message);
+    }
+  
+    return { data, error };
   }
 
   async login(email: string, password: string) {
@@ -44,13 +49,13 @@ export class DatabaseService {
     return { data, error };
   }
 
-  // 🚪 Logout
   async logout() {
     const { error } = await this.supabase.auth.signOut();
     if (error) {
       console.error('Error al cerrar sesión:', error.message);
     } else {
       console.log('Sesión cerrada correctamente.');
+      this.router.navigate(['/login']); // 👈 Redirige a login
     }
   }
   

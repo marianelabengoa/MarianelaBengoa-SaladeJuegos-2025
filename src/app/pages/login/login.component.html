@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form (submit)="login(); $event.preventDefault()">
+      <input type="email" placeholder="Correo" [(ngModel)]="email" name="email" required>
+      <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+      <button type="submit">Ingresar</button>
+      <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+    </form>
+  
+    <hr>
+  
+    <h3>Inicio rápido:</h3>
+    <button (click)="loginRapido(1)">Login rápido Usuario 1</button>
+    <button (click)="loginRapido(2)">Login rápido Usuario 2</button>
+    <button (click)="loginRapido(3)">Login rápido Usuario 3</button>
+  </div>
+  
