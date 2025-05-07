@@ -1,25 +1,98 @@
-.carta {
+
+.juego-mayor-menor {
+  text-align: center;
+  padding: 20px;
+}
+
+.titulo-seccion h1 {
   font-size: 2em;
-  margin: 20px;
+  margin-bottom: 30px;
+  color: #c93eff;
+  text-shadow: 0 0 5px #700e97;
+}
+
+.contenido-juego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
 }
 
 .carta-img {
-  width: 150px;
+  width: 180px;
   height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-.botones button {
-  margin: 10px;
-  padding: 10px;
+.botones {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  background-image: linear-gradient(to top, #f4f1ee, #fff);
+  border-radius: 50%;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, .3),
+              inset 0px 4px 1px 1px white,
+              inset 0px -3px 1px 1px rgba(204,198,197,.5);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .1s linear;
+  user-select: none;
+}
+
+.button:hover {
+  background-image: linear-gradient(to top, #fff, #f4f1ee);
+  color: #0088cc;
+}
+
+.button:active {
+  background-image: linear-gradient(to top, #efedec, #f7f4f4);
+  box-shadow: 0 3px 5px rgba(0,0,0,.4),
+              inset 0px -3px 1px 1px rgba(204,198,197,.5);
+}
+
+.button.disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .mensaje {
   margin-top: 20px;
   font-size: 1.5em;
-  color: #007bff;
+  color: #000000;
+  font-weight: bold;
 }
 
 .inicio {
   margin-top: 30px;
+}
+
+.btn {
+  color: rgb(16, 24, 50);
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: 0.075em;
+  padding: 0.8em 1em;
+  text-transform: uppercase;
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  border-image-slice: 1;
+  background-color: white;
+  transition: all 200ms ease-in-out;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  transform: translate(0.5em, -0.5em);
+  box-shadow: -1em 1em .15em rgba(16,24,50,0.1);
 }

@@ -59,8 +59,6 @@ export class DatabaseService {
     }
   }
   
-
-  // ✅ Obtener usuario actual
   async obtenerUsuarioActual() {
     const { data, error } = await this.supabase.auth.getUser();
     return { user: data?.user, error };
@@ -69,16 +67,12 @@ export class DatabaseService {
   getClient(): SupabaseClient {
     return this.supabase;
   }
+
   async getUsuarioLogueado() {
     const user = await this.supabase.auth.getUser();
     return user ? user : null;
   }
 
-  async guardarResultadoAhorcado(resultado: any) {
-    return await this.supabase
-      .from('resultados_ahorcado')
-      .insert([resultado]);
-  }
   
 }
 

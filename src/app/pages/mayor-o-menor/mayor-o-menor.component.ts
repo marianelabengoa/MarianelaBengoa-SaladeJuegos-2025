@@ -72,37 +72,41 @@ export class MayorOMenorComponent implements OnInit {
 
   adivinarMayor() {
     if (!this.jugando || !this.cartaSiguiente) return;
-
+  
     const valorCartaActual = this.convertirValorCarta(this.cartaActual.value);
     const valorCartaSiguiente = this.convertirValorCarta(this.cartaSiguiente.value);
-
+  
     if (valorCartaSiguiente > valorCartaActual) {
       this.puntaje++;
       this.mensaje = '¡Correcto! La carta siguiente es mayor.';
+    } else if (valorCartaSiguiente === valorCartaActual) {
+      this.mensaje = 'Las cartas son iguales. No suma punto, pero continúa.';
     } else {
       this.mensaje = '¡Incorrecto! La carta siguiente no es mayor.';
       this.terminarJuego();
     }
-
+  
     this.cartaActual = this.cartaSiguiente;
     this.obtenerCarta(); 
   }
+  
 
   adivinarMenor() {
     if (!this.jugando || !this.cartaSiguiente) return;
-
+  
     const valorCartaActual = this.convertirValorCarta(this.cartaActual.value);
     const valorCartaSiguiente = this.convertirValorCarta(this.cartaSiguiente.value);
-
+  
     if (valorCartaSiguiente < valorCartaActual) {
       this.puntaje++;
       this.mensaje = '¡Correcto! La carta siguiente es menor.';
+    } else if (valorCartaSiguiente === valorCartaActual) {
+      this.mensaje = 'Las cartas son iguales. No suma punto, pero continúa.';
     } else {
       this.mensaje = '¡Incorrecto! La carta siguiente no es menor.';
       this.terminarJuego();
     }
-
-
+  
     this.cartaActual = this.cartaSiguiente;
     this.obtenerCarta(); 
   }

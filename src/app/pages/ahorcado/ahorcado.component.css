@@ -10,16 +10,7 @@
   text-shadow: 0 0 5px #810fae;
     margin-bottom: 30px;
   }
-  
-  .contenedor-palabra {
-    display: inline-block;
-    padding: 20px 30px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #9335a0, #700c82);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.449);
-    margin: 10px auto;
-  }
-  
+
   .palabra {
     font-size: 4em;
     letter-spacing: 15px;
@@ -30,7 +21,7 @@
   
   
   .teclado {
-    margin: 50px auto;
+    margin: 10px auto;
   }
   
   .fila {
@@ -57,6 +48,7 @@
     cursor: pointer;
     transition: all .1s linear;
     user-select: none;
+    
   }
   
   .button:hover {
@@ -91,6 +83,7 @@
     border-image-slice: 1;
     background-color: white;
     transition: all 200ms ease-in-out;
+    margin: 15px;
   }
   
   .btn:hover {
@@ -102,14 +95,16 @@
   .juego-layout {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 40px;
+    margin: 0 auto;
+    max-width: 1000px; 
+    gap:20px;
   }
   
   .imagen-ahorcado {
     position: relative;
-    width: 200px;
+    width: 300px;
     height: 300px;
   }
   
@@ -119,6 +114,7 @@
     left: 0;
     width: 100%;
     height: auto;
+    height: auto;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
@@ -127,3 +123,14 @@
     opacity: 1;
   }
   
+  .contenedor-palabra {
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #9335a0, #700c82);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.449);
+    margin: 0 auto; 
+  }
