@@ -1,0 +1,129 @@
+
+   .ahorcado-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .titulo-seccion h1 {
+    font-size: 2em;
+    color: #c93eff;
+  text-shadow: 0 0 5px #810fae;
+    margin-bottom: 30px;
+  }
+  
+  .contenedor-palabra {
+    display: inline-block;
+    padding: 20px 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #9335a0, #700c82);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.449);
+    margin: 10px auto;
+  }
+  
+  .palabra {
+    font-size: 4em;
+    letter-spacing: 15px;
+    font-family: monospace;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  
+  .teclado {
+    margin: 50px auto;
+  }
+  
+  .fila {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .button {
+    background-image: linear-gradient(to top, #f4f1ee, #fff);
+    border-radius: 50%;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, .3),
+                inset 0px 4px 1px 1px white,
+                inset 0px -3px 1px 1px rgba(204,198,197,.5);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .1s linear;
+    user-select: none;
+  }
+  
+  .button:hover {
+    background-image: linear-gradient(to top, #fff, #f4f1ee);
+    color: #0088cc;
+  }
+  
+  .button:active {
+    background-image: linear-gradient(to top, #efedec, #f7f4f4);
+    box-shadow: 0 3px 5px rgba(0,0,0,.4),
+                inset 0px -3px 1px 1px rgba(204,198,197,.5);
+  }
+  
+  .button.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .resultado {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    color: rgb(16, 24, 50);
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 0.075em;
+    padding: 0.8em 1em;
+    text-transform: uppercase;
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+    border-image-slice: 1;
+    background-color: white;
+    transition: all 200ms ease-in-out;
+  }
+  
+  .btn:hover {
+    transform: translate(0.5em, -0.5em);
+    box-shadow: -1em 1em .15em rgba(16,24,50,0.1);
+  }
+  
+  
+  .juego-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  
+  .imagen-ahorcado {
+    position: relative;
+    width: 200px;
+    height: 300px;
+  }
+  
+  .imagen-ahorcado img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .imagen-ahorcado img.visible {
+    opacity: 1;
+  }
+  

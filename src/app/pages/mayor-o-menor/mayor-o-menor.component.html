@@ -1,0 +1,25 @@
+<div class="juego-container">
+  <h1>Juego: Mayor o Menor</h1>
+  
+  <div class="carta">
+    <img 
+      [src]="cartaActual ? cartaActual.image : ''" 
+      alt="Carta actual" 
+      class="carta-img"
+    />
+  </div>
+  
+  <div class="botones">
+    <button (click)="adivinarMayor()" [disabled]="!jugando">Mayor</button>
+    <button (click)="adivinarMenor()" [disabled]="!jugando">Menor</button>
+  </div>
+  
+  <div *ngIf="mensaje" class="mensaje">
+    <p>{{ mensaje }}</p>
+  </div>
+  
+  <div *ngIf="!jugando" class="inicio">
+    <p>Tu puntaje final es: {{ puntaje }}</p>
+    <button (click)="iniciarJuego()">Iniciar Juego</button>
+  </div>
+</div>

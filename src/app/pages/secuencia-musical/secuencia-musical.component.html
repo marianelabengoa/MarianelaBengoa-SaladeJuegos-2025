@@ -1,0 +1,26 @@
+<div class="secuencia-musical-container">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+
+  <div class="titulo-seccion">
+    <h1>🎵 Secuencia Musical</h1>
+  </div>  
+  
+    <button *ngIf="!juegoIniciado" (click)="comenzar()" class="btn-cyber">Comenzar</button>
+  
+    <div *ngIf="juegoIniciado"> 
+      <div class="botones">
+        <button *ngFor="let color of colores; let i = index"
+                [ngStyle]="{'background-color': color}"
+                (click)="onClickNota(i)"
+                [disabled]="!enTurnoJugador"
+                [ngClass]="{'activa': notasActivas[i]}">
+        </button>
+      </div>
+  
+      <div class="estado">
+        <p>Nivel: {{nivel}}</p>
+        <p *ngIf="mensaje">{{mensaje}}</p>
+        <button (click)="reiniciar()" class="btn-cyber">Reiniciar</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+.carta {
+  font-size: 2em;
+  margin: 20px;
+}
+
+.carta-img {
+  width: 150px;
+  height: auto;
+}
+
+.botones button {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.mensaje {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #007bff;
+}
+
+.inicio {
+  margin-top: 30px;
+}

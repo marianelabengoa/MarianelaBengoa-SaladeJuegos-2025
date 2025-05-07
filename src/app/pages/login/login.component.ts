@@ -37,7 +37,6 @@ export class LoginComponent {
     }
   }
 
-  // ✨ Método para login rápido
   loginRapido(usuario: number) {
     switch (usuario) {
       case 1:
@@ -54,7 +53,6 @@ export class LoginComponent {
         break;
     }
 
-    // Llamar directamente al método login
     this.login();
   }
 }

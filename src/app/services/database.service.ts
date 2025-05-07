@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Router } from '@angular/router'; // Importalo
+import { Router } from '@angular/router';
 
 const supabaseUrl = 'https://wznsybxninhseorgkdcc.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bnN5YnhuaW5oc2VvcmdrZGNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyMzQ3MzAsImV4cCI6MjA2MDgxMDczMH0.F_AE4XDTSj0_PCe6Q4wC2LSFPurAc0alW3L00T0XRLQ'; // reemplazar
@@ -12,7 +12,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 export class DatabaseService {
   private supabase: SupabaseClient;
 
-  constructor(private router: Router) { // Inyectalo
+  constructor(private router: Router) {
     this.supabase = createClient(supabaseUrl, supabaseKey);
   }
 
@@ -55,7 +55,7 @@ export class DatabaseService {
       console.error('Error al cerrar sesión:', error.message);
     } else {
       console.log('Sesión cerrada correctamente.');
-      this.router.navigate(['/login']); // 👈 Redirige a login
+      this.router.navigate(['/login']);
     }
   }
   
@@ -66,7 +66,6 @@ export class DatabaseService {
     return { user: data?.user, error };
   }
 
-  // Método para acceder al cliente directamente si se necesita
   getClient(): SupabaseClient {
     return this.supabase;
   }
@@ -74,5 +73,12 @@ export class DatabaseService {
     const user = await this.supabase.auth.getUser();
     return user ? user : null;
   }
+
+  async guardarResultadoAhorcado(resultado: any) {
+    return await this.supabase
+      .from('resultados_ahorcado')
+      .insert([resultado]);
+  }
+  
 }
 

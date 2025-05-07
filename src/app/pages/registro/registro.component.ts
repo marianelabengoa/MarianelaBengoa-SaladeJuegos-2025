@@ -35,14 +35,13 @@ export class RegistroComponent {
     } else {
       console.log('Registro exitoso');
 
-      // Iniciar sesión automáticamente
       const loginResultado = await this.dbService.login(this.email, this.password);
 
       if (loginResultado && loginResultado.error) {
         console.error('Error al iniciar sesión:', loginResultado.error.message);
         this.errorMsg = 'Registro exitoso, pero error al iniciar sesión.';
       } else {
-        this.router.navigate(['/bienvenida']); // Redirigir a Home
+        this.router.navigate(['/bienvenida']);
       }
     }
   }

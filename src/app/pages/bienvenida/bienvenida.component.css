@@ -1,11 +1,68 @@
 .bienvenida-container {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  button {
-    margin: 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-  }
-  
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.6); 
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(201, 62, 255, 0.4);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bienvenida-container h1 {
+  text-align: center;
+  color: #c93eff;
+  text-shadow: 0 0 5px #c93eff;
+  font-size: 36px;
+}
+
+.bienvenida-container p {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #950cde, #c93eff);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+  box-shadow: 0 0 12px rgba(201, 62, 255, 0.3);
+  letter-spacing: 1px;
+  margin: 10px auto;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(201, 62, 255, 0.5);
+  border: 2px solid #c93eff;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #c93eff;
+  margin: 20px 0;
+}
+
+.bienvenida-container h2 {
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  text-shadow: 0 0 3px #c93eff;
+}
+
+.bienvenida-container ng-template {
+  text-align: center;
+}

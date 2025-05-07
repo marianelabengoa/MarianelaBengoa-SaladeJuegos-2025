@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, HttpClientModule, CommonModule], // 👈 agregá CommonModule
+  imports: [RouterOutlet, RouterLink, HttpClientModule, CommonModule], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone: true
@@ -19,14 +19,9 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient,private dbService: DatabaseService) {}
 
-  // async ngOnInit() {
-  //   const { user, error } = await this.databaseService.obtenerUsuarioActual();
-  //   this.usuarioLogueado = !!user; // 👈 Si hay user, está logueado
-  // }
   async ngOnInit() {
-    // Verificamos si el usuario está logueado
     const { user } = await this.dbService.obtenerUsuarioActual();
-    this.usuarioLogueado = user ? true : false; // Si el usuario existe, está logueado
+    this.usuarioLogueado = user ? true : false;
   }
 
   async logout() {

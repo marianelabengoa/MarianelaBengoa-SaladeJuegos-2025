@@ -1,16 +1,33 @@
-<div>
-  <!-- Mostrar botones de Login y Registro solo si no está logueado -->
-  <button *ngIf="!usuarioLogueado" routerLink="login">Login</button>
-  <button *ngIf="!usuarioLogueado" routerLink="registro">Registro</button>
 
-  
-  <!-- Mostrar otros botones, como "Quien soy", que siempre estarán visibles -->
-  <button routerLink="bienvenida">Bienvenida</button>
-  <button routerLink="quiensoy">Quien soy</button>
+<div class="nav-buttons">
+  <button *ngIf="!usuarioLogueado" routerLink="login">
+    <span>Login</span>
+    <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+    </svg>
+  </button>
 
-  <!-- Mostrar el botón de "Cerrar sesión" solo si está logueado -->
-  <!-- <button *ngIf="usuarioLogueado" (click)="logout()">Cerrar sesión</button> -->
+  <button *ngIf="!usuarioLogueado" routerLink="registro">
+    <span>Registro</span>
+    <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+    </svg>
+  </button>
+
+  <button routerLink="bienvenida">
+    <span>Bienvenida</span>
+    <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+    </svg>
+  </button>
+
+  <button routerLink="quiensoy">
+    <span>Quien soy</span>
+    <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+    </svg>
+  </button>
 </div>
 
-<!-- El contenido de las rutas se renderiza aquí -->
-<router-outlet />
+<router-outlet></router-outlet>
+
