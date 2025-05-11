@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-mayor-o-menor',
@@ -15,7 +16,12 @@ export class MayorOMenorComponent implements OnInit {
   mensaje: string = '';
   jugando: boolean = false;
 
-  constructor() {}
+  tiempo: number = 0;
+  intervalo: any = null;
+
+
+
+  constructor(private dbService: DatabaseService) {}
 
   ngOnInit() {
     this.crearBaraja();
@@ -34,8 +40,40 @@ export class MayorOMenorComponent implements OnInit {
     this.puntaje = 0;
     this.mensaje = '';
     this.jugando = true;
+    this.tiempo = 0;
+  
+    if (this.intervalo) {
+      clearInterval(this.intervalo);
+    }
+  
+    this.intervalo = setInterval(() => {
+      this.tiempo++;
+    }, 1000);
+  
     this.obtenerCarta();
   }
+  
+
+  async terminarJuego() {
+    this.mensaje += ` El juego ha terminado. Tu puntaje final es ${this.puntaje} en ${this.tiempo} segundos.`;
+    this.jugando = false;
+  
+    if (this.intervalo) {
+      clearInterval(this.intervalo);
+      this.intervalo = null;
+    }
+  
+    const { user, error: userError } = await this.dbService.obtenerUsuarioActual();
+  
+    if (user && user.email) {
+      await this.dbService.guardarMayorMenor(user.email, this.puntaje, this.tiempo);
+    } else {
+      console.warn('No se pudo guardar la partida: usuario no logueado.');
+    }
+  }
+  
+  
+
 
   obtenerCarta() {
     if (!this.barajaId) return;
@@ -111,8 +149,5 @@ export class MayorOMenorComponent implements OnInit {
     this.obtenerCarta(); 
   }
 
-  terminarJuego() {
-    this.mensaje += ` El juego ha terminado. Tu puntaje final es ${this.puntaje}.`;
-    this.jugando = false;
-  }
+ 
 }

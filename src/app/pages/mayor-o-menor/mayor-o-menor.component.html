@@ -1,8 +1,12 @@
-
 <div class="juego-mayor-menor">
   <div class="titulo-seccion">
     <h1>Juego: Mayor o Menor</h1>
   </div>
+
+  <div *ngIf="jugando" class="cronometro">
+    <p>Tiempo: {{ tiempo }} segundos</p>
+  </div>
+  
 
   <div class="contenido-juego">
     <div class="carta">

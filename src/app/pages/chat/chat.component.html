@@ -1,0 +1,26 @@
+<div class="chat-container" #chatContainer>
+    @for (m of mensajes(); track m.id) {
+      <div
+        class="mensaje"
+        [ngClass]="{
+          'mensaje-derecha': m.usuarios.correo === usuarioLogueadoEmail,
+          'mensaje-izquierda': m.usuarios.correo !== usuarioLogueadoEmail
+        }"
+      >
+        <div class="nombre">{{ m.usuarios.nombre }}</div>
+        <div>{{ m.mensaje }}</div>
+        <div style="font-size: 10px; text-align: right;">
+            {{ formatearRelativo(m.created_at) }}
+        </div>
+                
+        </div>
+    }
+    <div style="margin-top: 10px;">
+        <input [(ngModel)]="mensaje" placeholder="Escribe un mensaje..." />
+        <button (click)="enviar()">Enviar</button>
+      </div>
+  </div>
+  
+ 
+  
+  

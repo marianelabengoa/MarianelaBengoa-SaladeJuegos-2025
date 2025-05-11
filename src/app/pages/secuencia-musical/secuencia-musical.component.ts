@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SoundService } from '../../../app/services/sound.service';
 import { CommonModule } from '@angular/common';
+import { DatabaseService } from '../../services/database.service';
+
 
 @Component({
   selector: 'app-secuencia-musical',
@@ -18,22 +20,32 @@ export class SecuenciaMusicalComponent implements OnInit {
   mensaje: string = '';
   notasActivas: boolean[] = [];
   juegoIniciado: boolean = false;
+  vidas: number = 3;
+  usuario: string = '';
+  botonesError: boolean[] = [false, false, false, false];
 
-  constructor(private soundService: SoundService) {}
+constructor(private soundService: SoundService, private db: DatabaseService) {}
 
-  ngOnInit(): void {}
-
+async ngOnInit(): Promise<void> {
+  const res = await this.db.obtenerUsuarioActual();
+  this.usuario = res.user?.email ?? 'invitado';
+}
   comenzar() {
     this.juegoIniciado = true;
+    this.vidas = 3;
     this.reiniciar();
   }
+  
 
   reiniciar() {
     this.secuencia = [];
+    this.inputUsuario = [];
     this.nivel = 0;
     this.mensaje = '';
+    this.vidas=3;
     this.nuevaRonda();
   }
+  
 
   nuevaRonda() {
     this.enTurnoJugador = false;
@@ -59,24 +71,56 @@ export class SecuenciaMusicalComponent implements OnInit {
 
   onClickNota(nota: number) {
     if (!this.enTurnoJugador) return;
-
+  
     this.soundService.playSound(nota);
     this.inputUsuario.push(nota);
-
+  
     const index = this.inputUsuario.length - 1;
+  
     if (this.inputUsuario[index] !== this.secuencia[index]) {
-      this.mensaje = '¡Perdiste! Nivel alcanzado: ' + this.nivel;
-      this.enTurnoJugador = false;
+      this.vidas--;
+  
+      // Marca botón como error
+      this.botonesError[nota] = true;
+      setTimeout(() => this.botonesError[nota] = false, 500);
+  
+      if (this.vidas <= 0) {
+        this.mensaje = '¡Juego terminado! Nivel alcanzado: ' + this.nivel;
+        this.enTurnoJugador = false;
+        this.guardarResultado();
+        return;
+      } else {
+        this.mensaje = `¡Error! Te quedan ${this.vidas} vidas.`;
+        this.inputUsuario = [];
+        this.enTurnoJugador = false;
+        setTimeout(() => this.reproducirSecuencia(), 1000);
+      }
       return;
     }
-
+  
     if (this.inputUsuario.length === this.secuencia.length) {
       this.nivel++;
+      this.mensaje = '';
       setTimeout(() => this.nuevaRonda(), 1000);
     }
   }
+  
 
   delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  guardarResultado() {
+    const nivel = this.nivel;
+  
+    this.db.guardarSecuencia(this.usuario, nivel)
+      .then(resp => {
+        if (resp.error) {
+          console.error('Error al guardar en Supabase:', resp.error.message);
+        } else {
+          console.log('Resultado guardado:', resp.data);
+        }
+      });
+  }
+  
 }

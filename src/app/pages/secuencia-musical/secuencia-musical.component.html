@@ -5,22 +5,27 @@
     <h1>🎵 Secuencia Musical</h1>
   </div>  
   
-    <button *ngIf="!juegoIniciado" (click)="comenzar()" class="btn-cyber">Comenzar</button>
-  
-    <div *ngIf="juegoIniciado"> 
-      <div class="botones">
-        <button *ngFor="let color of colores; let i = index"
-                [ngStyle]="{'background-color': color}"
-                (click)="onClickNota(i)"
-                [disabled]="!enTurnoJugador"
-                [ngClass]="{'activa': notasActivas[i]}">
-        </button>
-      </div>
-  
-      <div class="estado">
-        <p>Nivel: {{nivel}}</p>
-        <p *ngIf="mensaje">{{mensaje}}</p>
-        <button (click)="reiniciar()" class="btn-cyber">Reiniciar</button>
-      </div>
-    </div>
+    <!-- Botón Comenzar -->
+
+<!-- Botones siempre visibles -->
+<div class="botones">
+  <button *ngFor="let color of colores; let i = index"
+          [ngStyle]="{'background-color': color}"
+          (click)="onClickNota(i)"
+          [disabled]="!enTurnoJugador"
+          [ngClass]="{
+            'activa': notasActivas[i],
+            'error': botonesError[i]
+          }">
+  </button>
+</div>
+<button *ngIf="!juegoIniciado" (click)="comenzar()" class="btn-cyber">Comenzar</button>
+
+<!-- Estado solo cuando inicia el juego -->
+<div class="estado" *ngIf="juegoIniciado">
+  <p>Nivel: {{nivel}}</p>
+  <p>Vidas: {{vidas}}</p>
+  <p *ngIf="mensaje">{{mensaje}}</p>
+  <button (click)="reiniciar()" class="btn-cyber">Reiniciar</button>
+</div>
   </div>

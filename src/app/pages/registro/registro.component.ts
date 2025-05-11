@@ -28,6 +28,7 @@ export class RegistroComponent {
     }
 
     const resultado = await this.dbService.registrar(this.email, this.password, this.nombre, this.apellido, this.edad);
+   await this.dbService.guardarNombreCorreo( this.nombre, this.email);
 
     if (resultado && resultado.error) {
       console.error('Error al registrar:', resultado.error.message);

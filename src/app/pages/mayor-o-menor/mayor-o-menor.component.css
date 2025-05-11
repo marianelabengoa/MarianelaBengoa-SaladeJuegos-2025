@@ -96,3 +96,10 @@
   transform: translate(0.5em, -0.5em);
   box-shadow: -1em 1em .15em rgba(16,24,50,0.1);
 }
+.cronometro p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #444;
+  margin: 0;
+}
+
