@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DatabaseService } from '../../services/database.service'; // Asegúrate de importar el servicio
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -29,6 +29,7 @@ export class AhorcadoComponent {
   erroresTotales:number = 0;
   usuario: string = 'Jugador1'; 
 
+
   constructor(private dbService: DatabaseService) {
   this.dbService.obtenerUsuarioActual().then(res => {
     if (res.user) {
@@ -42,7 +43,7 @@ export class AhorcadoComponent {
     this.errores = 0;
     
     this.letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    const palabras = ['ANGULAR', 'AHORCADO', 'JUEGO', 'PROGRAMACION', 'COMPONENTE'];
+    const palabras = ['ANGULAR', 'AHORCADO', 'JUEGO', 'PROGRAMACION', 'COMPONENTE', 'WEB', 'LABORATORIO', 'USUARIO', 'TYPESCRIPT', 'SERVICIO', 'APLICACION', 'HORCA', 'PALABRA'];
     this.palabraSecreta = palabras[Math.floor(Math.random() * palabras.length)];
     this.palabraOculta = '_'.repeat(this.palabraSecreta.length);
     this.intentosRestantes = 5;
@@ -78,32 +79,35 @@ export class AhorcadoComponent {
     this.verificarEstadoJuego();
   }
   
-  verificarEstadoJuego() {
-    if (this.palabraOculta === this.palabraSecreta) {
-      this.aciertos++;
-      this.mensaje = '¡Ganaste!';
-      this.juegoTerminado = true;
-  
-      setTimeout(() => {
-        this.inicializarJuego();
-      }, 500);
-  
-    } else if (this.intentosRestantes <= 0) {
-      this.mensaje = `¡Perdiste! La palabra era: ${this.palabraSecreta}`;
-      this.juegoTerminado = true;
-      
-      this.dbService.guardarEstadisticas(this.usuario, this.aciertos, this.errores).then((res) => {
-        if (res.error) {
-          console.error('Error al guardar las estadísticas:', res.error.message);
-        } else {
-          console.log('Estadísticas guardadas exitosamente.');
-        }
-      });
-  
-      setTimeout(() => {
-        this.aciertos=0;
-        this.inicializarJuego();
-      }, 500);
-    }
-  }  
+ verificarEstadoJuego() {
+  if (this.palabraOculta === this.palabraSecreta) {
+    this.aciertos++;
+    this.mensaje = '¡Ganaste!';
+    this.juegoTerminado = true;
+
+    setTimeout(() => {
+      this.erroresTotales += this.errores;
+      this.inicializarJuego(); 
+    }, 500);
+
+  } else if (this.intentosRestantes <= 0) {
+    this.mensaje = `¡Perdiste! La palabra era: ${this.palabraSecreta}`;
+    this.juegoTerminado = true;
+
+    this.erroresTotales += this.errores;
+
+    this.dbService.guardarEstadisticas(this.usuario, this.aciertos, this.erroresTotales).then((res) => {
+      if (res.error) {
+        console.error('Error al guardar las estadísticas:', res.error.message);
+      } else {
+        console.log('Estadísticas guardadas exitosamente.');
+      }
+    });
+
+    setTimeout(() => {
+      this.aciertos = 0;
+      this.erroresTotales = 0;
+    }, 500);
+  }
+}
 }

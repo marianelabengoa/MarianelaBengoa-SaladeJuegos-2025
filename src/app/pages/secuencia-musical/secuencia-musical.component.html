@@ -1,31 +1,33 @@
 <div class="secuencia-musical-container">
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap"
+    rel="stylesheet"
+  />
 
   <div class="titulo-seccion">
     <h1>🎵 Secuencia Musical</h1>
-  </div>  
-  
-    <!-- Botón Comenzar -->
-
-<!-- Botones siempre visibles -->
-<div class="botones">
-  <button *ngFor="let color of colores; let i = index"
-          [ngStyle]="{'background-color': color}"
-          (click)="onClickNota(i)"
-          [disabled]="!enTurnoJugador"
-          [ngClass]="{
-            'activa': notasActivas[i],
-            'error': botonesError[i]
-          }">
-  </button>
-</div>
-<button *ngIf="!juegoIniciado" (click)="comenzar()" class="btn-cyber">Comenzar</button>
-
-<!-- Estado solo cuando inicia el juego -->
-<div class="estado" *ngIf="juegoIniciado">
-  <p>Nivel: {{nivel}}</p>
-  <p>Vidas: {{vidas}}</p>
-  <p *ngIf="mensaje">{{mensaje}}</p>
-  <button (click)="reiniciar()" class="btn-cyber">Reiniciar</button>
-</div>
   </div>
+
+  <div class="botones">
+    <button
+      *ngFor="let color of colores; let i = index"
+      [ngStyle]="{ 'background-color': color }"
+      (click)="onClickNota(i)"
+      [disabled]="!enTurnoJugador"
+      [ngClass]="{
+        activa: notasActivas[i],
+        error: botonesError[i]
+      }"
+    ></button>
+  </div>
+  <button *ngIf="!juegoIniciado" (click)="comenzar()" class="btn-cyber">
+    Comenzar
+  </button>
+
+  <div class="estado" *ngIf="juegoIniciado">
+    <p>Nivel: {{ nivel }}</p>
+    <p>Vidas: {{ vidas }}</p>
+    <p *ngIf="mensaje">{{ mensaje }}</p>
+    <button *ngIf="juegoTerminado" (click)="reiniciar()" class="btn-cyber">Reiniciar</button>
+  </div>
+</div>

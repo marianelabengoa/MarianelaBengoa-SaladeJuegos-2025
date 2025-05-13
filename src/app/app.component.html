@@ -1,43 +1,59 @@
-
 <div class="nav-buttons">
   <button *ngIf="!usuarioLogueado" routerLink="login">
     <span>Login</span>
     <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+      <path
+        d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+      />
     </svg>
   </button>
 
   <button *ngIf="!usuarioLogueado" routerLink="registro">
     <span>Registro</span>
     <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+      <path
+        d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+      />
     </svg>
   </button>
 
   <button routerLink="bienvenida">
     <span>Bienvenida</span>
     <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+      <path
+        d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+      />
     </svg>
   </button>
 
   <button routerLink="quiensoy">
     <span>Quien soy</span>
     <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+      <path
+        d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+      />
     </svg>
   </button>
 
-  <button (click)="mostrarBarraChat()">
-    <span>{{ mostrarChat ? 'Cerrar Chat' : 'Chat' }}</span>
+  <button *ngIf="usuarioLogueado" (click)="mostrarBarraChat()">
+    <span>{{ mostrarChat ? "Cerrar Chat" : "Chat" }}</span>
     <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+      <path
+        d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+      />
     </svg>
   </button>
 
-  
+  <button routerLink="resultados">
+    <span>Resultados</span>
+    <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+      />
+    </svg>
+  </button>
 </div>
 
 <router-outlet></router-outlet>
 
-<app-chat *ngIf="mostrarChat"></app-chat>
+<app-chat *ngIf="usuarioLogueado && mostrarChat"></app-chat>

@@ -6,6 +6,9 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { AhorcadoComponent } from './pages/ahorcado/ahorcado.component';
 import { MayorOMenorComponent } from './pages/mayor-o-menor/mayor-o-menor.component';
 import { SecuenciaMusicalComponent } from './pages/secuencia-musical/secuencia-musical.component';
+import { PreguntadosComponent } from './pages/preguntados/preguntados.component';
+import { ResultadosComponent } from './pages/resultados/resultados.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: BienvenidaComponent },
@@ -13,9 +16,22 @@ export const routes: Routes = [
   { path: 'bienvenida', component: BienvenidaComponent },
   { path: 'quiensoy', component: QuiensoyComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'ahorcado', component: AhorcadoComponent },
-  { path: 'mayor-o-menor', component: MayorOMenorComponent },
-  { path: 'secuencia-musical', component: SecuenciaMusicalComponent },
-  { path: '**', redirectTo: 'bienvenida', pathMatch: 'full' }
+  { path: 'ahorcado', component: AhorcadoComponent, canActivate: [AuthGuard] },
+  {
+    path: 'mayor-o-menor',
+    component: MayorOMenorComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'secuencia-musical',
+    component: SecuenciaMusicalComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'preguntados',
+    component: PreguntadosComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'resultados', component: ResultadosComponent },
+  { path: '**', redirectTo: 'bienvenida', pathMatch: 'full' },
 ];
-

@@ -4,15 +4,17 @@
   </div>
 
   <div *ngIf="jugando" class="cronometro">
-    <p>Tiempo: {{ tiempo }} segundos</p>
+     <img src="https://i.gifer.com/Z92m.gif" alt="Reloj" class="reloj-gif" />
+      <!-- <img src="https://i.gifer.com/WnEJ.gif" alt="Reloj" class="reloj-gif" /> -->
+
+    <p> {{ tiempo }} segundos</p>
   </div>
-  
 
   <div class="contenido-juego">
     <div class="carta">
-      <img 
-        [src]="cartaActual ? cartaActual.image : ''" 
-        alt="Carta actual" 
+      <img
+        [src]="cartaActual ? cartaActual.image : ''"
+        alt="Carta actual"
         class="carta-img"
       />
     </div>
@@ -31,7 +33,6 @@
     </div>
 
     <div *ngIf="!jugando" class="inicio">
-      <p>Tu puntaje final es: {{ puntaje }}</p>
       <a class="btn" (click)="iniciarJuego()">Iniciar Juego</a>
     </div>
   </div>

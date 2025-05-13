@@ -22,7 +22,8 @@
 }
 
 .descripcion h2,
-.descripcion h3, h1 {
+.descripcion h3,
+h1 {
   margin-bottom: 10px;
   color: #c93eff;
   text-shadow: 0 0 5px #c93eff;

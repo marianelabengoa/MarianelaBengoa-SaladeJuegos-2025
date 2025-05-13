@@ -6,7 +6,7 @@ import { DatabaseService } from '../../services/database.service';
   selector: 'app-mayor-o-menor',
   templateUrl: './mayor-o-menor.component.html',
   styleUrls: ['./mayor-o-menor.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class MayorOMenorComponent implements OnInit {
   barajaId: string = '';
@@ -18,8 +18,6 @@ export class MayorOMenorComponent implements OnInit {
 
   tiempo: number = 0;
   intervalo: any = null;
-
-
 
   constructor(private dbService: DatabaseService) {}
 
@@ -41,39 +39,40 @@ export class MayorOMenorComponent implements OnInit {
     this.mensaje = '';
     this.jugando = true;
     this.tiempo = 0;
-  
+
     if (this.intervalo) {
       clearInterval(this.intervalo);
     }
-  
+
     this.intervalo = setInterval(() => {
       this.tiempo++;
     }, 1000);
-  
+
     this.obtenerCarta();
   }
-  
 
   async terminarJuego() {
-    this.mensaje += ` El juego ha terminado. Tu puntaje final es ${this.puntaje} en ${this.tiempo} segundos.`;
+    this.mensaje += ` Tu puntaje final es ${this.puntaje} en ${this.tiempo} segundos.`;
     this.jugando = false;
-  
+
     if (this.intervalo) {
       clearInterval(this.intervalo);
       this.intervalo = null;
     }
-  
-    const { user, error: userError } = await this.dbService.obtenerUsuarioActual();
-  
+
+    const { user, error: userError } =
+      await this.dbService.obtenerUsuarioActual();
+
     if (user && user.email) {
-      await this.dbService.guardarMayorMenor(user.email, this.puntaje, this.tiempo);
+      await this.dbService.guardarMayorMenor(
+        user.email,
+        this.puntaje,
+        this.tiempo
+      );
     } else {
       console.warn('No se pudo guardar la partida: usuario no logueado.');
     }
   }
-  
-  
-
 
   obtenerCarta() {
     if (!this.barajaId) return;
@@ -83,8 +82,8 @@ export class MayorOMenorComponent implements OnInit {
       .then((data) => {
         if (data.cards && data.cards.length > 0) {
           if (!this.cartaActual) {
-            this.cartaActual = data.cards[0]; 
-            this.obtenerCarta(); 
+            this.cartaActual = data.cards[0];
+            this.obtenerCarta();
           } else {
             this.cartaSiguiente = data.cards[0];
           }
@@ -110,44 +109,45 @@ export class MayorOMenorComponent implements OnInit {
 
   adivinarMayor() {
     if (!this.jugando || !this.cartaSiguiente) return;
-  
+
     const valorCartaActual = this.convertirValorCarta(this.cartaActual.value);
-    const valorCartaSiguiente = this.convertirValorCarta(this.cartaSiguiente.value);
-  
+    const valorCartaSiguiente = this.convertirValorCarta(
+      this.cartaSiguiente.value
+    );
+
     if (valorCartaSiguiente > valorCartaActual) {
       this.puntaje++;
-      this.mensaje = '¡Correcto! La carta siguiente es mayor.';
+      this.mensaje = '¡Correcto!';
     } else if (valorCartaSiguiente === valorCartaActual) {
       this.mensaje = 'Las cartas son iguales. No suma punto, pero continúa.';
     } else {
-      this.mensaje = '¡Incorrecto! La carta siguiente no es mayor.';
+      this.mensaje = '¡Incorrecto!';
       this.terminarJuego();
     }
-  
+
     this.cartaActual = this.cartaSiguiente;
-    this.obtenerCarta(); 
+    this.obtenerCarta();
   }
-  
 
   adivinarMenor() {
     if (!this.jugando || !this.cartaSiguiente) return;
-  
+
     const valorCartaActual = this.convertirValorCarta(this.cartaActual.value);
-    const valorCartaSiguiente = this.convertirValorCarta(this.cartaSiguiente.value);
-  
+    const valorCartaSiguiente = this.convertirValorCarta(
+      this.cartaSiguiente.value
+    );
+
     if (valorCartaSiguiente < valorCartaActual) {
       this.puntaje++;
-      this.mensaje = '¡Correcto! La carta siguiente es menor.';
+      this.mensaje = '¡Correcto!';
     } else if (valorCartaSiguiente === valorCartaActual) {
       this.mensaje = 'Las cartas son iguales. No suma punto, pero continúa.';
     } else {
-      this.mensaje = '¡Incorrecto! La carta siguiente no es menor.';
+      this.mensaje = '¡Incorrecto!';
       this.terminarJuego();
     }
-  
-    this.cartaActual = this.cartaSiguiente;
-    this.obtenerCarta(); 
-  }
 
- 
+    this.cartaActual = this.cartaSiguiente;
+    this.obtenerCarta();
+  }
 }

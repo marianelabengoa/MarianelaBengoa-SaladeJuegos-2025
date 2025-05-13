@@ -37,8 +37,8 @@ input::placeholder {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; 
-  appearance: textfield; 
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -58,7 +58,6 @@ button {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
   box-shadow: 0 0 12px rgba(201, 62, 255, 0.3);
   letter-spacing: 1px;
-
 }
 
 button:hover {

@@ -14,7 +14,11 @@ import { AppComponent } from '../../app.component';
 export class BienvenidaComponent implements OnInit {
   usuario: any = null;
 
-  constructor(private dbService: DatabaseService, private router: Router, private appcomponent: AppComponent) {}
+  constructor(
+    private dbService: DatabaseService,
+    private router: Router,
+    private appcomponent: AppComponent
+  ) {}
 
   async ngOnInit() {
     const { user, error } = await this.dbService.obtenerUsuarioActual();

@@ -1,10 +1,9 @@
+<div class="ahorcado-container">
+  <div class="titulo-seccion">
+    <h1>Ahorcado</h1>
+  </div>
 
-  <div class="ahorcado-container">
-    <div class="titulo-seccion">
-      <h1>Ahorcado</h1>
-    </div>
-  
-    
+  <div *ngIf="!(juegoTerminado && intentosRestantes === 0)">
     <div class="juego-layout">
       <div class="contenedor-palabra">
         <p class="palabra">{{ palabraOculta }}</p>
@@ -19,32 +18,49 @@
         <img src="https://i.postimg.cc/3dqs57kk/07.png" [class.visible]="juegoTerminado && intentosRestantes === 0" />
       </div>
     </div>
-  
+
     <div class="teclado">
       <div class="fila">
-        <div *ngFor="let letra of fila1" class="button" (click)="seleccionarLetra(letra)" [class.disabled]="juegoTerminado || letrasSeleccionadas.includes(letra)">
+        <div *ngFor="let letra of fila1" class="button" (click)="seleccionarLetra(letra)"
+          [class.disabled]="juegoTerminado || letrasSeleccionadas.includes(letra)">
           <span>{{ letra }}</span>
         </div>
       </div>
       <div class="fila">
-        <div *ngFor="let letra of fila2" class="button" (click)="seleccionarLetra(letra)" [class.disabled]="juegoTerminado || letrasSeleccionadas.includes(letra)">
+        <div *ngFor="let letra of fila2" class="button" (click)="seleccionarLetra(letra)"
+          [class.disabled]="juegoTerminado || letrasSeleccionadas.includes(letra)">
           <span>{{ letra }}</span>
         </div>
       </div>
       <div class="fila">
-        <div *ngFor="let letra of fila3" class="button" (click)="seleccionarLetra(letra)" [class.disabled]="juegoTerminado || letrasSeleccionadas.includes(letra)">
+        <div *ngFor="let letra of fila3" class="button" (click)="seleccionarLetra(letra)"
+          [class.disabled]="juegoTerminado || letrasSeleccionadas.includes(letra)">
           <span>{{ letra }}</span>
         </div>
       </div>
     </div>
-  
+
     <p>Intentos restantes: {{ intentosRestantes }}</p>
     <p>Aciertos: {{ aciertos }}</p>
-    <p>Errores totales: {{ errores }}</p>
-  
-    <div *ngIf="juegoTerminado" class="resultado">
-      <h3>{{ mensaje }}</h3>
-      <a class="btn" (click)="inicializarJuego()">Jugar de nuevo</a>
-    </div>
+    <p>Errores: {{ errores }}</p>
+    <p>Errores totales: {{ erroresTotales }}</p>
+
   </div>
-  
+
+
+  <div *ngIf="juegoTerminado && intentosRestantes === 0" class="resultado-final">
+    <h1>¡Perdiste!</h1>
+    <div class="imagen-ahorcado">
+      <img src="https://i.postimg.cc/3JgPn59f/01.png" class="visible"/>
+      <img src="https://i.postimg.cc/FdxM2LSv/02.png" class="visible"/>
+      <img src="https://i.postimg.cc/D4y9FwQX/03.png" class="visible"/>
+      <img src="https://i.postimg.cc/Tp1z4h38/06.png" class="visible"/>
+      <img src="https://i.postimg.cc/w3q8DwKj/04.png" class="visible"/>
+      <img src="https://i.postimg.cc/s1TFm5y9/05.png" class="visible"/>
+      <img src="https://i.postimg.cc/3dqs57kk/07.png" class="visible"/>
+    </div>
+    <p>Aciertos: {{ aciertos }}</p>
+    <p>Errores: {{ errores }}</p>
+    <button class="btn" (click)="inicializarJuego()">Jugar de nuevo</button>
+  </div>
+</div>

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  styleUrl: './registro.component.css',
 })
 export class RegistroComponent {
   email: string = '';
@@ -22,13 +22,25 @@ export class RegistroComponent {
   constructor(private dbService: DatabaseService, private router: Router) {}
 
   async registrar() {
-    if (!this.email || !this.password || !this.nombre || !this.apellido || this.edad === null) {
+    if (
+      !this.email ||
+      !this.password ||
+      !this.nombre ||
+      !this.apellido ||
+      this.edad === null
+    ) {
       this.errorMsg = 'Todos los campos son obligatorios.';
       return;
     }
 
-    const resultado = await this.dbService.registrar(this.email, this.password, this.nombre, this.apellido, this.edad);
-   await this.dbService.guardarNombreCorreo( this.nombre, this.email);
+    const resultado = await this.dbService.registrar(
+      this.email,
+      this.password,
+      this.nombre,
+      this.apellido,
+      this.edad
+    );
+    await this.dbService.guardarNombreCorreo(this.nombre, this.email);
 
     if (resultado && resultado.error) {
       console.error('Error al registrar:', resultado.error.message);
@@ -36,7 +48,10 @@ export class RegistroComponent {
     } else {
       console.log('Registro exitoso');
 
-      const loginResultado = await this.dbService.login(this.email, this.password);
+      const loginResultado = await this.dbService.login(
+        this.email,
+        this.password
+      );
 
       if (loginResultado && loginResultado.error) {
         console.error('Error al iniciar sesión:', loginResultado.error.message);

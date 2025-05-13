@@ -1,0 +1,73 @@
+<div class="ranking-container">
+  <h2>Ranking Ahorcado</h2>
+  <table>
+    <tr>
+      <th>Usuario</th>
+      <th>Aciertos</th>
+      <th>Errores</th>
+      <th>Fecha</th>
+    </tr>
+    <tr *ngFor="let r of rankingAhorcado">
+      <td *ngIf="r.esPrimerLugar" class="coronita">👑 {{ r.nombre }}</td>
+      <td *ngIf="!r.esPrimerLugar" class="coronita">{{ r.nombre }}</td>
+      <td>{{ r.aciertos }}</td>
+      <td>{{ r.errores }}</td>
+      <td>{{ r.fecha }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="ranking-container">
+  <h2>Ranking Mayor o Menor</h2>
+  <table>
+    <tr>
+      <th>Usuario</th>
+      <th>Aciertos</th>
+      <th>segundos</th>
+      <th>Fecha</th>
+    </tr>
+    <tr *ngFor="let r of rankingMayorMenor">
+      <td *ngIf="r.esPrimerLugar" class="coronita">👑 {{ r.nombre }}</td>
+      <td *ngIf="!r.esPrimerLugar" class="coronita">{{ r.nombre }}</td>
+      <td>{{ r.aciertos }}</td>
+      <td>{{ r.tiempo }}</td>
+      <td>{{ r.fecha }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="ranking-container">
+  <h2>Ranking Secuencia</h2>
+  <table>
+    <tr>
+      <th>Usuario</th>
+      <th>Nivel alcanzado</th>
+      <th>Fecha</th>
+    </tr>
+    <tr *ngFor="let r of rankingSecuencia">
+      <td *ngIf="r.esPrimerLugar" class="coronita">👑 {{ r.nombre }}</td>
+      <td *ngIf="!r.esPrimerLugar" class="coronita">{{ r.nombre }}</td>
+      <td>{{ r.nivel }}</td>
+      <td>{{ r.fecha }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="ranking-container">
+  <h2>Partidas Preguntados</h2>
+  <table>
+    <tr>
+      <th>Usuario</th>
+      <th>Aciertos</th>
+      <th>Errores</th>
+      <th>Fecha</th>
+    </tr>
+    <tr *ngFor="let r of partidasPreguntados">
+      <td *ngIf="r.esPrimerLugar" class="coronita">👑 {{ r.nombre }}</td>
+      <td *ngIf="!r.esPrimerLugar" class="coronita">{{ r.nombre }}</td>
+      <td>{{ r.aciertos }}</td>
+      <td>{{ r.errores }}</td>
+      <td>{{ r.fecha }}</td>
+    </tr>
+  </table>
+</div>

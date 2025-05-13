@@ -10,14 +10,18 @@ import { AppComponent } from '../../app.component';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
   errorMsg: string = '';
 
-  constructor(private dbService: DatabaseService, private router: Router, private appcomponent: AppComponent) {}
+  constructor(
+    private dbService: DatabaseService,
+    private router: Router,
+    private appcomponent: AppComponent
+  ) {}
 
   async login() {
     if (!this.email || !this.password) {
@@ -25,14 +29,18 @@ export class LoginComponent {
       return;
     }
 
-    const { data, error } = await this.dbService.login(this.email, this.password);
+    const { data, error } = await this.dbService.login(
+      this.email,
+      this.password
+    );
 
     if (error) {
       console.error('Error al iniciar sesión:', error.message);
-      this.errorMsg = 'Error: ' + (error.message || 'Credenciales incorrectas.');
+      this.errorMsg =
+        'Error: ' + (error.message || 'Credenciales incorrectas.');
     } else {
       console.log('Inicio de sesión exitoso');
-      this.appcomponent.usuarioLogueado=true;
+      this.appcomponent.usuarioLogueado = true;
       this.router.navigate(['/bienvenida']);
     }
   }

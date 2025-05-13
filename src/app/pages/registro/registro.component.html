@@ -1,13 +1,42 @@
 <div class="form-container">
-    <h2>Registro</h2>
-    <form (submit)="registrar(); $event.preventDefault()">
-      <input type="email" placeholder="Correo" [(ngModel)]="email" name="email" required>
-      <input type="text" placeholder="Nombre" [(ngModel)]="nombre" name="nombre" required>
-      <input type="text" placeholder="Apellido" [(ngModel)]="apellido" name="apellido" required>
-      <input type="number" placeholder="Edad" [(ngModel)]="edad" name="edad" required>
-      <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
-      <button type="submit">Registrarse</button>
-      <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
-    </form>
-  </div>
-  
+  <h2>Registro</h2>
+  <form (submit)="registrar(); $event.preventDefault()">
+    <input
+      type="email"
+      placeholder="Correo"
+      [(ngModel)]="email"
+      name="email"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Nombre"
+      [(ngModel)]="nombre"
+      name="nombre"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Apellido"
+      [(ngModel)]="apellido"
+      name="apellido"
+      required
+    />
+    <input
+      type="number"
+      placeholder="Edad"
+      [(ngModel)]="edad"
+      name="edad"
+      required
+    />
+    <input
+      type="password"
+      placeholder="Contraseña"
+      [(ngModel)]="password"
+      name="password"
+      required
+    />
+    <button type="submit">Registrarse</button>
+    <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+  </form>
+</div>

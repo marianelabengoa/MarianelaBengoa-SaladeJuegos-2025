@@ -1,0 +1,50 @@
+.ranking-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(201, 62, 255, 0.4);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+}
+
+.ranking-container h2 {
+  color: #c93eff;
+  text-shadow: 0 0 5px #c93eff;
+  margin-bottom: 20px;
+}
+
+.ranking-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ranking-container th,
+.ranking-container td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ranking-container th {
+  background-color: rgba(201, 62, 255, 0.2);
+  color: #fff;
+}
+
+.ranking-container tr:last-child td {
+  border-bottom: none;
+}
+
+.ranking-container td {
+  color: #eee;
+}
+
+.ranking-container tr:hover {
+  background-color: rgba(201, 62, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
