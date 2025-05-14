@@ -41,7 +41,7 @@ export class PreguntadosComponent {
     this.httpService.traerPreguntaTrivia().subscribe({
       next: (data) => {
         if (data.results.length === 0) {
-          this.resultado.set('❌ No se pudo obtener una pregunta.');
+          this.resultado.set(' No se pudo obtener una pregunta.');
           return;
         }
 
@@ -103,7 +103,7 @@ export class PreguntadosComponent {
       await this.database.actualizarPreguntados(nombre, false);
     }
 
-    this.resultado.set('❌ No respondiste la pregunta.');
+    this.resultado.set(' No respondiste la pregunta.');
   }
 
   this.cargarPregunta();
