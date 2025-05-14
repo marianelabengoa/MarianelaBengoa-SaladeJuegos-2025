@@ -16,20 +16,36 @@ export const routes: Routes = [
   { path: 'bienvenida', component: BienvenidaComponent },
   { path: 'quiensoy', component: QuiensoyComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'ahorcado', component: AhorcadoComponent, canActivate: [AuthGuard] },
+  {
+    path: 'ahorcado',
+    loadComponent: () =>
+      import('./pages/ahorcado/ahorcado.component').then(
+        (m) => m.AhorcadoComponent
+      ),
+    canActivate: [AuthGuard],
+  },
   {
     path: 'mayor-o-menor',
-    component: MayorOMenorComponent,
+    loadComponent: () =>
+      import('./pages/mayor-o-menor/mayor-o-menor.component').then(
+        (m) => m.MayorOMenorComponent
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'secuencia-musical',
-    component: SecuenciaMusicalComponent,
+    loadComponent: () =>
+      import('./pages/secuencia-musical/secuencia-musical.component').then(
+        (m) => m.SecuenciaMusicalComponent
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: 'preguntados',
-    component: PreguntadosComponent,
+    loadComponent: () =>
+      import('./pages/preguntados/preguntados.component').then(
+        (m) => m.PreguntadosComponent
+      ),
     canActivate: [AuthGuard],
   },
   { path: 'resultados', component: ResultadosComponent },

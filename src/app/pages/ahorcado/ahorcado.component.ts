@@ -7,7 +7,7 @@ import { DatabaseService } from '../../services/database.service';
   standalone: true,
   templateUrl: './ahorcado.component.html',
   styleUrls: ['./ahorcado.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule,]
 })
 export class AhorcadoComponent {
   letras: string[] = []; 

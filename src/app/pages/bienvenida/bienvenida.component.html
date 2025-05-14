@@ -1,8 +1,8 @@
 <div class="bienvenida-container">
   <h1>Bienvenido a la Sala de Juegos 🎮</h1>
   <div *ngIf="usuario; else noLogueado">
-    <p>Hola, {{ usuario.email }} 👋</p>
-    <button (click)="logout()">Cerrar sesión</button>
+    <p>Hola {{ usuario }}</p>
+    <button class="cerrar" (click)="logout()">Cerrar sesión</button>
   </div>
 
   <ng-template #noLogueado>

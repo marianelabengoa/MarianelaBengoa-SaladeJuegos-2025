@@ -29,6 +29,10 @@ h1 {
   text-shadow: 0 0 5px #c93eff;
 }
 
+p{
+  margin-top: 15px;
+}
+
 .descripcion p,
 .descripcion li {
   font-size: 16px;
@@ -37,4 +41,8 @@ h1 {
 
 .descripcion ul {
   padding-left: 20px;
+}
+
+a{
+  color:white;
 }

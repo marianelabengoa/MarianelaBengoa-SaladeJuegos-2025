@@ -21,6 +21,7 @@ export class PreguntadosComponent {
   aciertos = signal<number>(0);
   errores = signal<number>(0);
   database = inject(DatabaseService);
+  
 
   async ngOnInit() {
     const nombre = await this.database.obtenerNombreDelUsuarioActual();
@@ -34,7 +35,7 @@ export class PreguntadosComponent {
     if (nombre) {
       await this.database.finalizarPartidaPreguntados(nombre);
     }
-  }
+  } 
 
   cargarPregunta() {
     this.httpService.traerPreguntaTrivia().subscribe({
@@ -59,12 +60,10 @@ export class PreguntadosComponent {
           this.respuestas.set(mezcladas);
           this.resultado.set('');
           this.seleccion.set(null);
-        }, 6000);
+        }, 2500);
       },
       error: (err) => {
-        console.error('Error al traer la pregunta:', err);
-        this.resultado.set('❌ Error al conectar con el servidor.');
-      },
+        console.error('Error al traer la pregunta:', err);      },
     });
   }
 
@@ -93,4 +92,21 @@ export class PreguntadosComponent {
     txt.innerHTML = html;
     return txt.value;
   }
+  async siguientePregunta() {
+  const yaRespondio = this.seleccion() !== null;
+
+  if (!yaRespondio) {
+    this.errores.update((n) => n + 1);
+
+    const nombre = await this.database.obtenerNombreDelUsuarioActual();
+    if (nombre) {
+      await this.database.actualizarPreguntados(nombre, false);
+    }
+
+    this.resultado.set('❌ No respondiste la pregunta.');
+  }
+
+  this.cargarPregunta();
+}
+
 }

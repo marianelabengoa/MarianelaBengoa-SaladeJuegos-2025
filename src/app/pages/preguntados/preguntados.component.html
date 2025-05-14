@@ -23,7 +23,7 @@
 
   <p *ngIf="resultado()" class="resultado-text">{{ resultado() }}</p>
 
-  <button class="siguiente-pregunta" (click)="cargarPregunta()">
+  <button (click)="siguientePregunta()" class="siguiente-pregunta" >
     Siguiente Pregunta
   </button>
 

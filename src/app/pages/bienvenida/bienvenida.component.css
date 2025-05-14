@@ -21,8 +21,10 @@
 
 .bienvenida-container p {
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
+  margin: 20px;
+  font-weight: bold;
 }
 
 button {
@@ -37,6 +39,12 @@ button {
   box-shadow: 0 0 12px rgba(201, 62, 255, 0.3);
   letter-spacing: 1px;
   
+}
+
+.cerrar{
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
 }
 
 button:hover {

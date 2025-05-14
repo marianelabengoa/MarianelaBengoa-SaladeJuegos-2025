@@ -23,14 +23,13 @@ export class BienvenidaComponent implements OnInit {
   async ngOnInit() {
     const { user, error } = await this.dbService.obtenerUsuarioActual();
     if (user) {
-      this.usuario = user;
+      this.usuario = await this.dbService.obtenerNombreDelUsuarioActual();
     }
   }
 
   async logout() {
     await this.appcomponent.logout();
     this.usuario = null;
-    this.router.navigate(['/login']);
   }
 
   navegarA(path: string) {
