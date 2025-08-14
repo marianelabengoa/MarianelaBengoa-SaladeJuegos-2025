@@ -76,6 +76,9 @@ La aplicación utiliza **Supabase** como backend para autenticación, gestión d
 
 ## 🚀 Instalación y Uso
 
+### Podes visitarla en el siguiente link
+https://marianela-bengoa-salade-juegos-2025.vercel.app/
+
 ### 1. Clonar el repositorio
 git clone https://github.com/tu-usuario/sala-de-juegos.git
 
